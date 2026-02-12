@@ -1,0 +1,13 @@
+{
+  "Plugin-Class": "maggie.stare.PlayerTracker",
+  "Name": "${project.plugin_name}",
+  "Version": "${project.plugin_version}",
+  "Description": "Automatically follow other players with your eyes while enabled",
+  "URL": "https://github.com/maggieabby/playertracker-plugin",
+  "Authors": [
+    "magpie"
+  ],
+  "Minecraft-Versions": [
+    "1.21.4"
+  ]
+}
