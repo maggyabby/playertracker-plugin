@@ -3,7 +3,7 @@
   "Name": "${project.plugin_name}",
   "Version": "${project.plugin_version}",
   "Description": "Automatically follow other players with your eyes while enabled",
-  "URL": "https://github.com/maggieabby/playertracker-plugin",
+  "URL": "https://github.com/maggyabby/playertracker-plugin",
   "Authors": [
     "magpie"
   ],
