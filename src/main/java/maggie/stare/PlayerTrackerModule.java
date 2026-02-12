@@ -8,6 +8,7 @@ import org.rusherhack.client.api.events.render.EventRender2D;
 import org.rusherhack.client.api.feature.module.ModuleCategory;
 import org.rusherhack.client.api.feature.module.ToggleableModule;
 import org.rusherhack.client.api.utils.ChatUtils;
+import org.rusherhack.client.api.utils.RotationUtils;
 import org.rusherhack.core.event.subscribe.Subscribe;
 
 
@@ -21,21 +22,19 @@ public class PlayerTrackerModule extends ToggleableModule {
 
     @Subscribe
     private void onFrameRender(EventRender2D event) {
+        if (mc.player == null || mc.level == null) return;
         if (whoToFollow == null || !mc.level.players().contains(whoToFollow)) {
             ChatUtils.print("Target out of render distance");
             this.setToggled(false);
             return;
         }
 
-        Vec3 diff = whoToFollow.getEyePosition().subtract(mc.player.getEyePosition());
-        double horizontal = Math.sqrt(diff.x * diff.x + diff.z * diff.z);
-        float yaw = (float)(Math.toDegrees(Math.atan2(diff.z, diff.x)) - 90.0);
-        float pitch = (float)(-Math.toDegrees(Math.atan2(diff.y, horizontal)));
+        float[] rots = RotationUtils.getRotations(whoToFollow.getEyePosition());
+        mc.player.setYRot(rots[0]);
+        mc.player.setXRot(rots[1]);
+        mc.player.yRotO = rots[0];
+        mc.player.xRotO = rots[1];
 
-        mc.player.setYRot(yaw);
-        mc.player.setXRot(pitch);
-        mc.player.yRotO = yaw;
-        mc.player.xRotO = pitch;
     }
 
     @Override
